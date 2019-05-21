@@ -1,0 +1,68 @@
+swagger: "2.0"
+info:
+  description: REST API for NLP.
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+paths:
+  /exercise/get_ex:
+    get:
+      operationId: exercise.api.get_ex
+      tags:
+        - Exercise
+      summary: Get an exercise.
+      description: Get an exercise.
+      parameters:
+        - name: document_title
+          in: query
+          description: Type of exercise.
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully returned an exercise.
+          schema:
+            $ref: '#/definitions/exercises'
+
+definitions:
+  topic_word:
+    properties:
+      text:
+        type: string
+      lemma:
+        type: string
+      pos:
+        type: string
+      index:
+        type: integer
+      type:
+        type: string
+      feats:
+        type: array
+        items: {}
+  exercise:
+    properties:
+      document_title:
+        type: string
+      paragraph_start:
+        type: string
+      paragraph_index:
+        type: integer
+      sentence_index:
+        type: integer
+      sentence_text:
+        type: string
+      schema:
+        type: array
+        items:
+          $ref: "#/definitions/topic_word"
+  exercises:
+    type: array
+    items:
+      $ref: "#/definitions/exercise"
