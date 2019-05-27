@@ -24,6 +24,13 @@ paths:
           description: Title of document.
           type: string
           required: True
+        - name: ex_types
+          in: query
+          description: Type of exercises to get.
+          type: array
+          items:
+            type: string
+          required: False
       responses:
         200:
           description: Successfully returned a document exercise.
