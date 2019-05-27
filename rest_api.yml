@@ -11,24 +11,70 @@ produces:
 basePath: /api
 
 paths:
-  /exercise/get_ex:
+  /exercise/get_document:
     get:
-      operationId: exercise.api.get_ex
+      operationId: exercise.api.get_document
       tags:
         - Exercise
-      summary: Get an exercise.
-      description: Get an exercise.
+      summary: Get a document exercise.
+      description: Get a document exercise.
       parameters:
         - name: document_title
           in: query
-          description: Type of exercise.
+          description: Title of document.
           type: string
           required: True
       responses:
         200:
-          description: Successfully returned an exercise.
+          description: Successfully returned a document exercise.
           schema:
             $ref: '#/definitions/exercises'
+
+  /exercise/get_paragraph:
+    get:
+      operationId: exercise.api.get_paragraph
+      tags:
+        - Exercise
+      summary: Get a paragraph exercise.
+      description: Get a paragraph exercise.
+      parameters:
+        - name: document_title
+          in: query
+          description: Title of document.
+          type: string
+          required: True
+        - name: paragraph_index
+          in: query
+          description: Paragraph number to get.
+          type: integer
+          required: True
+        - name: ex_types
+          in: query
+          description: Type of exercises to get.
+          type: array
+          items:
+            type: string
+          required: False
+      responses:
+        200:
+          description: Successfully returned a paragraph exercise.
+          schema:
+            $ref: '#/definitions/exercises'
+
+  /exercise/get_document_list:
+    get:
+      operationId: exercise.api.get_document_list
+      tags:
+        - Exercise
+      summary: Get a list of all the distinct document titles.
+      description: Get a list of all the distinct document titles.
+      responses:
+        200:
+          description: Successfully returned a list of document titles.
+          schema:
+            type: array
+            items: {}
+
 
 definitions:
   topic_word:
@@ -66,3 +112,4 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/exercise"
+
