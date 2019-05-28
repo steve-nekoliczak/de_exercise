@@ -1,14 +1,11 @@
-swagger: "2.0"
+openapi: "3.0.0"
 info:
-  description: REST API for NLP.
+  description: REST API for de_exercise.
   version: "1.0.0"
-  title: Swagger Rest Article
-consumes:
-  - application/json
-produces:
-  - application/json
+  title: REST API for de_exercise.
 
-basePath: /api
+servers:
+  - url: /api
 
 paths:
   /exercise/get_document:
@@ -22,20 +19,24 @@ paths:
         - name: document_title
           in: query
           description: Title of document.
-          type: string
+          schema:
+            type: string
           required: True
         - name: ex_types
           in: query
           description: Type of exercises to get.
-          type: array
-          items:
-            type: string
+          schema:
+            type: array
+            items:
+              type: string
           required: False
       responses:
         200:
           description: Successfully returned a document exercise.
-          schema:
-            $ref: '#/definitions/exercises'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exercises'
 
   /exercise/get_paragraph:
     get:
@@ -48,25 +49,30 @@ paths:
         - name: document_title
           in: query
           description: Title of document.
-          type: string
+          schema:
+            type: string
           required: True
         - name: paragraph_index
           in: query
           description: Paragraph number to get.
-          type: integer
+          schema:
+            type: integer
           required: True
         - name: ex_types
           in: query
           description: Type of exercises to get.
-          type: array
-          items:
-            type: string
+          schema:
+            type: array
+            items:
+              type: string
           required: False
       responses:
         200:
           description: Successfully returned a paragraph exercise.
-          schema:
-            $ref: '#/definitions/exercises'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exercises'
 
   /exercise/get_document_list:
     get:
@@ -78,45 +84,47 @@ paths:
       responses:
         200:
           description: Successfully returned a list of document titles.
-          schema:
-            type: array
-            items: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
 
-
-definitions:
-  topic_word:
-    properties:
-      text:
-        type: string
-      lemma:
-        type: string
-      pos:
-        type: string
-      index:
-        type: integer
-      type:
-        type: string
-      feats:
-        type: array
-        items: {}
-  exercise:
-    properties:
-      document_title:
-        type: string
-      paragraph_start:
-        type: string
-      paragraph_index:
-        type: integer
-      sentence_index:
-        type: integer
-      sentence_text:
-        type: string
-      schema:
-        type: array
-        items:
-          $ref: "#/definitions/topic_word"
-  exercises:
-    type: array
-    items:
-      $ref: "#/definitions/exercise"
+components:
+  schemas:
+    topic_word:
+      properties:
+        text:
+          type: string
+        lemma:
+          type: string
+        pos:
+          type: string
+        index:
+          type: integer
+        type:
+          type: string
+        feats:
+          type: array
+          items: {}
+    exercise:
+      properties:
+        document_title:
+          type: string
+        paragraph_start:
+          type: string
+        paragraph_index:
+          type: integer
+        sentence_index:
+          type: integer
+        sentence_text:
+          type: string
+        schema:
+          type: array
+          items:
+            $ref: "#/components/schemas/topic_word"
+    exercises:
+      type: array
+      items:
+        $ref: "#/components/schemas/exercise"
 
