@@ -6,6 +6,8 @@ from flask_marshmallow import Marshmallow
 
 from api_settings.mongo import mongo_uri
 
+db_dir = r'C:\data\db'
+text_files_dir = r'C:\data\text_files'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 connex_app = connexion.App(__name__, specification_dir=basedir)

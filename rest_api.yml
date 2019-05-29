@@ -90,6 +90,36 @@ paths:
                 type: array
                 items: {}
 
+  /exercise/put_document:
+    put:
+      operationId: exercise.api.put_document
+      tags:
+        - Exercise
+      summary: Add a text file in German to make as an exercise.
+      description: Add a text file in German to make as an exercise.
+      parameters:
+        - name: document_title
+          in: query
+          description: Title of document.
+          schema:
+            type: string
+          required: True
+        - name: document_author
+          in: query
+          description: Author of document.
+          schema:
+            type: string
+          required: True
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+              format: text
+      responses:
+        201:
+          description: Successfully created exercises from the document.
+
 components:
   schemas:
     topic_word:

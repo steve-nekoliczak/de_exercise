@@ -1,10 +1,12 @@
 from json import loads
+import os
 from random import randint
 
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from pymongo import ASCENDING, DESCENDING
 
 import config
+from exercise.builder import generate_ex
 
 
 def keep_ex_types(ex_dict, ex_types):
@@ -58,4 +60,19 @@ def get_document_list():
     result = config.mongo.db.exercise.distinct('document_title')
     json_result = loads(dumps(result, json_options=RELAXED_JSON_OPTIONS))
     return json_result
+
+
+def put_document(document_title, document_author, body):
+    document_exists = config.mongo.db.exercise.find_one(
+        {'document_title': document_title}
+    )
+    if document_exists:
+        return 'Document ' + document_title + ' already exists.', 204
+
+    filepath = os.path.abspath(os.path.join(config.text_files_dir,
+                                            document_title + '.txt'))
+    with open(filepath, 'w') as f:
+        f.write(body.decode())
+
+    generate_ex(filepath, document_title, document_author)
 
