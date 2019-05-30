@@ -13,15 +13,11 @@ def tokenize_sentence(snt):
 
 def build_topic_words_list(snt):
     found_tw = False
-    punct_chars = 0
     nlp_results = loads(tokenize_sentence(snt).content)[0]
     tws = []
 
     # Step through each word in the processed sentence.
     for token in nlp_results:
-
-        if token['pos'] == 'PUNCT':
-            punct_chars += 1
 
         tw = {}
         if 'PronType' in token['feats'] \
@@ -42,7 +38,7 @@ def build_topic_words_list(snt):
             tw['text'] = token['text']
             tw['lemma'] = token['lemma']
             tw['pos'] = token['pos']
-            tw['index'] = token['index'] - punct_chars
+            tw['index'] = token['index']
             tws.append(tw)
 
         found_tw = False
