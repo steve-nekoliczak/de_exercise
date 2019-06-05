@@ -10,7 +10,7 @@ servers:
 paths:
   /exercise/get_document:
     get:
-      operationId: exercise.api.get_document
+      operationId: api.exercise.get_document
       tags:
         - Exercise
       summary: Get a document exercise.
@@ -40,7 +40,7 @@ paths:
 
   /exercise/get_paragraph:
     get:
-      operationId: exercise.api.get_paragraph
+      operationId: api.exercise.get_paragraph
       tags:
         - Exercise
       summary: Get a paragraph exercise.
@@ -76,7 +76,7 @@ paths:
 
   /exercise/get_document_list:
     get:
-      operationId: exercise.api.get_document_list
+      operationId: api.exercise.get_document_list
       tags:
         - Exercise
       summary: Get a list of all the distinct document titles.
@@ -92,7 +92,7 @@ paths:
 
   /exercise/get_ex_type_list:
     get:
-      operationId: exercise.api.get_ex_type_list
+      operationId: api.exercise.get_ex_type_list
       tags:
         - Exercise
       summary: Get a list of all the distinct exercise types.
@@ -108,7 +108,7 @@ paths:
 
   /exercise/put_document:
     put:
-      operationId: exercise.api.put_document
+      operationId: api.exercise.put_document
       tags:
         - Exercise
       summary: Add a text file in German to make as an exercise.

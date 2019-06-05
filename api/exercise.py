@@ -31,9 +31,9 @@ def get_document(document_title, ex_types=[]):
 
 def get_paragraph(document_title, paragraph_index, ex_types=[]):
     last_para_result = config.mongo.db.exercise.find_one(
-            {'document_title': document_title},
-            sort=[("paragraph_index", DESCENDING)]
-        )
+        {'document_title': document_title},
+        sort=[("paragraph_index", DESCENDING)]
+    )
 
     if not last_para_result:
         return 'Document with title \'' + document_title + '\' was not found.', 404
