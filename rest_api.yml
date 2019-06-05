@@ -90,6 +90,22 @@ paths:
                 type: array
                 items: {}
 
+  /exercise/get_ex_type_list:
+    get:
+      operationId: exercise.api.get_ex_type_list
+      tags:
+        - Exercise
+      summary: Get a list of all the distinct exercise types.
+      description: Get a list of all the distinct exercise types.
+      responses:
+        200:
+          description: Successfully returned a list of exercise types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+
   /exercise/put_document:
     put:
       operationId: exercise.api.put_document

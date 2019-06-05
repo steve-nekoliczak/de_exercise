@@ -62,6 +62,12 @@ def get_document_list():
     return json_result
 
 
+def get_ex_type_list():
+    result = config.mongo.db.exercise.distinct('topic_words.type')
+    json_result = loads(dumps(result, json_options=RELAXED_JSON_OPTIONS))
+    return json_result
+
+
 def put_document(document_title, document_author, body):
     document_exists = config.mongo.db.exercise.find_one(
         {'document_title': document_title}
