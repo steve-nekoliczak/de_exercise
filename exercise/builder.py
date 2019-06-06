@@ -14,7 +14,7 @@ def tokenize_sentence(snt):
 def build_topic_words_list(snt):
     found_tw = False
     nlp_results = loads(tokenize_sentence(snt).content)[0]
-    tws = {}
+    tws = []
 
     # Step through each word in the processed sentence.
     for token in nlp_results:
@@ -39,7 +39,7 @@ def build_topic_words_list(snt):
             tw['lemma'] = token['lemma']
             tw['pos'] = token['pos']
             tw['index'] = token['index']
-            tws[str(tw['index'])] = tw
+            tws.append(tw)
 
         found_tw = False
 
