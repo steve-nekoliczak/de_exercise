@@ -97,6 +97,13 @@ paths:
         - Exercise
       summary: Get a list of all the distinct exercise types.
       description: Get a list of all the distinct exercise types.
+      parameters:
+        - name: document_title
+          in: query
+          description: Title of document that exercises are on.
+          schema:
+            type: string
+          required: True
       responses:
         200:
           description: Successfully returned a list of exercise types.

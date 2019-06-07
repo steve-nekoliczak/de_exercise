@@ -62,8 +62,8 @@ def get_document_list():
     return json_result
 
 
-def get_ex_type_list():
-    result = config.mongo.db.exercise.distinct('topic_words.type')
+def get_ex_type_list(document_title):
+    result = config.mongo.db.exercise.distinct('topic_words.type', {'document_title': document_title})
     json_result = loads(dumps(result, json_options=RELAXED_JSON_OPTIONS))
     return json_result
 
