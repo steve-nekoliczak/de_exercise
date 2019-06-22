@@ -1,4 +1,5 @@
 import os
+import sys
 
 import connexion
 from flask_pymongo import PyMongo
@@ -6,8 +7,14 @@ from flask_marshmallow import Marshmallow
 
 from api_settings.mongo import mongo_uri
 
-db_dir = r'C:\data\db'
-text_files_dir = r'C:\data\text_files'
+text_files_dir = ''
+
+drive_letter = os.path.splitdrive(sys.executable)[0]
+if drive_letter:
+    drive_letter += '\\'
+else:
+    drive_letter = r'/'
+file_dir = os.path.join(drive_letter, 'data', 'text_files')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 connex_app = connexion.App(__name__, specification_dir=basedir)
