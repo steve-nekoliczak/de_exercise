@@ -1,10 +1,12 @@
 import os
-from config import connex_app as application
-from server import get_args
+
 import config
+from server import get_args
 
 activate_this = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              'venv', 'bin', 'activate_this.py')
+
+application = config.connex_app
 
 if __name__ == "__main__":
     args = get_args()
