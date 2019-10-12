@@ -2,12 +2,13 @@ from json import loads
 import re
 import requests
 
-from api_settings.nlp import process_sentences_url as url
 import config
 
 
+routes = config.yml['api_routes']['nlp_json']
+
 def tokenize_sentence(snt):
-    return requests.get(url=url,
+    return requests.get(url=routes['process_sentences_url'],
                         params={'sentences_str': snt})
 
 

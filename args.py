@@ -1,8 +1,6 @@
 import argparse
-import os
 
-import config
-from exercise.builder import generate_ex
+from config import port, text_files_dir
 
 
 def get_args():
@@ -15,21 +13,10 @@ def get_args():
 
     ap.add_argument('-p', '--port', type=int,
                     help="Port number to run this service on.",
-                    default=5011)
+                    default=port)
 
     ap.add_argument('-t', '--text-files-dir',
                     help="Directory to store uploaded text files.",
-                    default=config.text_files_dir)
+                    default=text_files_dir)
 
-    a = ap.parse_args()
-
-    return a
-
-
-if __name__ == "__main__":
-    args = get_args()
-
-    config.text_files_dir = args.text_files_dir
-
-    config.connex_app.run(debug=args.debug, port=args.port)
-
+    return ap.parse_args()
